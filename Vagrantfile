@@ -11,12 +11,13 @@ Vagrant.configure(2) do |config|
 
   config.vm.hostname = "datascience-devbox"
 
-  config.vm.define "miniconda", primary: true, autostart: true do |a|
-    a.vm.provider "docker" do |d|
-      d.build_dir = "dockerfiles/"
-      d.dockerfile = "miniconda.docker"
-      d.cmd = ["/opt/conda/bin/jupyter", "notebook", "--notebook-dir=/opt/notebooks", "--ip='*'", "--port=8888", "--no-browser"]
-      d.ports = ["8888:8888"]
+  config.vm.define "miniconda", primary: true, autostart: true do |app|
+
+    app.vm.provider "docker" do |d|
+      d.image = "continuumio/miniconda"
+      d.cmd = ["/bin/bash", "-c","/opt/conda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser"]
+      d.ports = [ "8888:8888" ]
     end
+
   end
 end
