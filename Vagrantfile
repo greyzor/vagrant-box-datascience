@@ -40,7 +40,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "miniconda", primary: true, autostart: true do |app|
     app.vm.provider "docker" do |d|
       d.image = "continuumio/miniconda"
-      d.cmd = ["/bin/bash", "-c","/opt/conda/bin/conda install jupyter -y --quiet && conda install -y --quiet --file /opt/ds-devbox/notebook-spec.txt && /opt/ds-devbox/provision.sh && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/ds-devbox/notebooks --ip='*' --port=8888 --no-browser"]
+      d.cmd = ["/bin/bash", "-c","/opt/conda/bin/conda install jupyter -y --quiet && conda install -y --quiet --file /opt/ds-devbox/notebook-spec.txt && /opt/ds-devbox/provision.sh && source ~/.bashrc && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/ds-devbox/notebooks --ip='*' --port=8888 --no-browser"]
       d.ports = ["8888:8888"]
       d.link("spark-master:spark-master")
 #      d.volumes = ["notebooks:/opt/notebooks"]

@@ -14,3 +14,6 @@ echo export SPARK_HOME=$SPARK_HOME >> ~/.bashrc
 echo export PYTHONPATH=$SPARK_HOME/python/:'$PYTHONPATH' >> ~/.bashrc
 echo export PYSPARK_SUBMIT_ARGS='"--master spark://spark-master:7077 --packages com.databricks:spark-csv_2.10:1.4.0 pyspark-shell"' >> ~/.bashrc
 echo export PYSPARK_PYTHON=/usr/bin/python2.7 >> ~/.bashrc
+
+## Install other dependencies
+pip install py4j
